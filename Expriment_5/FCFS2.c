@@ -1,0 +1,48 @@
+#include<stdio.h>
+
+int main(){
+    int n,i;
+    int bt[10], wt[10], tat[10], ct[10], rt[10];
+    float avg_wt=0, avg_tat=0, avg_rt=0;
+
+    printf("Enter processes number to be create : ");
+    scanf("%d",&n);
+
+    printf("\nEnter burst time of each process:");
+    for(i=0;i<n;i++){
+        printf("\nProcess %d: ", i+1);
+        scanf("%d",&bt[i]);
+    }
+
+    wt[0] = 0;
+
+    for(i=1;i<n;i++){
+        wt[i] = wt[i-1] + bt[i-1];
+    }
+
+    for(i=0;i<n;i++){
+        tat[i] = wt[i] + bt[i];
+        rt[i]  = wt[i];     // Response Time
+        ct[i]  = tat[i];    // Completion Time
+
+        avg_wt  += wt[i];
+        avg_tat += tat[i];
+        avg_rt  += rt[i];
+    }
+
+    avg_wt  /= n;
+    avg_tat /= n;
+    avg_rt  /= n;
+
+    printf("\nProcess\tBT\tWT\tRT\tTAT\tCT\n");
+    for(i=0;i<n;i++){
+        printf("P%d\t%d\t%d\t%d\t%d\t%d\n",
+               i+1, bt[i], wt[i], rt[i], tat[i], ct[i]);
+    }
+
+    printf("\nAverage Waiting Time = %.2f\n", avg_wt);
+    printf("Average Response Time = %.2f\n", avg_rt);
+    printf("Average Turnaround Time = %.2f\n", avg_tat);
+
+    return 0;
+}
