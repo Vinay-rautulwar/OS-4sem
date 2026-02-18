@@ -1,1 +1,1 @@
-In this practical i learn about FCFS (first in first out) and suceesfully implement using nano editor
+In this practical i learn about FCFS (first comes first serve) and suceesfully implement using nano editor
